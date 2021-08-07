@@ -68,4 +68,38 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  // add more tests here
+  it('should remove all nodes and edges when "removeNode" is used as a callback', function() {
+    var removeNode = function(item) {
+      graph.removeNode(item);
+    };
+
+    graph.addNode(5);
+    graph.addNode(2);
+    graph.addNode(1);
+    graph.addNode(3);
+    graph.addNode(10);
+    graph.addNode(9);
+    graph.addNode(4);
+    graph.addNode(11);
+    graph.addNode(100);
+    graph.addNode(20);
+
+    graph.addEdge(1, 2);
+    graph.addEdge(1, 5);
+    graph.addEdge(3, 10);
+    graph.addEdge(9, 11);
+    graph.addEdge(20, 100);
+
+    graph.forEachNode(removeNode);
+
+    expect(graph.hasEdge(1, 2)).to.equal(false);
+    expect(graph.hasEdge(1, 5)).to.equal(false);
+    expect(graph.hasEdge(3, 10)).to.equal(false);
+    expect(graph.hasEdge(9, 11)).to.equal(false);
+    expect(graph.contains(11)).to.equal(false);
+    expect(graph.contains(100)).to.equal(false);
+  });
+
 });

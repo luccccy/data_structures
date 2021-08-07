@@ -47,6 +47,20 @@ describe('hashTable', function() {
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
 
+  //More test here:
+  it('should correctly retrieve and remove when multiple values are inserted', function() {
+    hashTable.insert('Daniel', ':)');
+    hashTable.insert('Lucy', 'hahaha');
+    hashTable.insert('tree', 'green');
+    hashTable.remove('tree');
+    expect(hashTable.retrieve('Lucy')).to.equal('hahaha');
+    expect(hashTable.retrieve('Daniel')).to.equal(':)');
+    expect(hashTable.retrieve('tree')).to.equal(undefined);
+  });
+
+
+
+
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit ('should double in size when needed', function() {
     _.each(people, function(person) {

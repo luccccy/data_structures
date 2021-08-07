@@ -52,4 +52,26 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it('should not contain a value that was removed when multiple values are added and removed', function() {
+    linkedList.addToTail(1);
+    linkedList.addToTail(2);
+    linkedList.addToTail(3);
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToTail(6);
+    linkedList.addToTail(7);
+    linkedList.addToTail(8);
+    linkedList.addToTail(9);
+    linkedList.addToTail(10);
+    linkedList.removeHead();
+    linkedList.removeHead();
+    linkedList.removeHead();
+    linkedList.removeHead();
+    linkedList.removeHead();
+    expect(linkedList.contains(1)).to.equal(false);
+    expect(linkedList.contains(2)).to.equal(false);
+    expect(linkedList.contains(7)).to.equal(true);
+    expect(linkedList.tail.value).to.equal(10);
+    expect(linkedList.head.value).to.equal(6);
+  });
 });

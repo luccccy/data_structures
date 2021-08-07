@@ -41,11 +41,39 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  // add more tests here
+  it('should correctly detect nested children with multiple nests', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[0].addChild(9);
+
+    tree.children[1].addChild(8);
+    tree.children[1].addChild(9);
+    tree.children[1].addChild(10);
+
+    tree.children[0].children[0].addChild(11);
+    tree.children[1].children[0].addChild(12);
+    expect(tree.contains(7)).to.equal(true);
+    expect(tree.contains(8)).to.equal(true);
+    expect(tree.contains(9)).to.equal(true);
+    expect(tree.contains(10)).to.equal(true);
+    expect(tree.contains(11)).to.equal(true);
+    expect(tree.contains(12)).to.equal(true);
+    expect(tree.contains(1)).to.equal(false);
+    expect(tree.children[0].children[0].children[0].value).to.equal(11);
+  });
 });
 
 /*
-{value: undefined, 
-  children: [{value: 5, children: [{value: 7, children: []}]}, 
+    5          6
+[7,     9]   [8, 9, 10]
+[11]         [12]
+*/
+
+/*
+{value: undefined,
+  children: [{value: 5, children: [{value: 7, children: []}]},
   {value: 6, children:[{value: 8, children: []}]}]
 }
 //   [5, 6]
