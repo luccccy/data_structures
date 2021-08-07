@@ -60,12 +60,25 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
-
-
+  for (var key in this.adjacentList) {
+    if (key === fromNode.toString()) {
+      var fromNodeArr = this.adjacentList[key];
+      var toNodeIndex = fromNodeArr.indexOf(toNode);
+      fromNodeArr.splice(toNodeIndex, 1);
+    }
+    if (key === toNode.toString()) {
+      var toNodeArr = this.adjacentList[key];
+      var fromNodeIndex = toNodeArr.indexOf(fromNode);
+      toNodeArr.splice(fromNodeIndex, 1);
+    }
+  }
 };
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+  for (var key in this.adjacentList) {
+    cb(key);
+  }
 };
 
 /*
