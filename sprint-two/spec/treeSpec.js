@@ -42,3 +42,61 @@ describe('tree', function() {
   });
 
 });
+
+/*
+{value: undefined, 
+  children: [{value: 5, children: [{value: 7, children: []}]}, 
+  {value: 6, children:[{value: 8, children: []}]}]
+}
+//   [5, 6]
+*/
+
+/*
+var Tree = function(value) {
+  var newTree = {};
+  newTree.value = value;
+
+  // your code here
+  newTree.children = [];
+
+//   _.extend(newTree, treeMethods);
+//   for (var key in treeMethods) {
+//       newTree[key] = treeMethods[key]
+//   }
+  newTree.addChild = treeMethods.addChild;
+  newTree.contains = treeMethods.contains;
+
+  return newTree;
+};
+
+var treeMethods = {};
+
+treeMethods.addChild = function(value) {
+  var child = Tree(value);
+  this.children.push(child);
+};
+
+treeMethods.contains = function(target) {
+  if (this.value === target) {
+    return true;
+  } else {
+    this.innerContains = function(target) {
+      if (this.children.length !== 0) {
+        for (var i = 0; i < this.children.length; i++) {
+          return this.children[i].innerContains(target);
+        }
+      }
+    };
+    innerContains(target);
+    return false;
+  }
+};
+
+var tree = Tree();
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[1].addChild(8);
+    console.log(tree.contains(7));
+    console.log(tree.contains(8));
+*/
